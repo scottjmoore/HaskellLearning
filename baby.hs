@@ -23,9 +23,29 @@ sayMe 8 = "Eight"
 sayMe 9 = "Nine"
 sayMe _ = "Lots!!!!"
 
-addVector3d :: (Num a) => (a, a, a) -> (a, a, a) -> (a, a, a)
-addVector3d (x, y, z) (x', y', z') = (x + x', y + y', z + z')
+fst3 :: (a, b, c) -> a
+fst3 (x, _, _) = x
+
+snd3 :: (a, b, c) -> b
+snd3 (_, y, _) = y
+
+trd3 :: (a, b, c) -> c
+trd3 (_, _, z) = z
+
+addVector3 :: (Num a) => (a, a, a) -> (a, a, a) -> (a, a, a)
+addVector3 (x, y, z) (x', y', z') = (x + x', y + y', z + z')
 
 primes = filterPrime [2..]
-    where filterPrime (p:xs) =
+    where
+        filterPrime (p:xs) =
             p : filterPrime [x | x <- xs, mod x p /= 0]
+
+sign :: (Integral a) => a -> String
+sign x
+    | y < zero = minusStr
+    | y > zero = positiveStr
+    | otherwise = zeroStr
+    where
+        y = x
+        zero = 0
+        (minusStr, zeroStr, positiveStr) = ("-", "0", "+")
