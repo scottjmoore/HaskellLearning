@@ -25,3 +25,7 @@ sayMe _ = "Lots!!!!"
 
 addVector3d :: (Num a) => (a, a, a) -> (a, a, a) -> (a, a, a)
 addVector3d (x, y, z) (x', y', z') = (x + x', y + y', z + z')
+
+primes = filterPrime [2..]
+    where filterPrime (p:xs) =
+            p : filterPrime [x | x <- xs, mod x p /= 0]
