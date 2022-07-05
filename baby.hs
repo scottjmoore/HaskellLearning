@@ -49,3 +49,33 @@ sign x
         y = x
         zero = 0
         (minusStr, zeroStr, positiveStr) = ("-", "0", "+")
+
+doTwice :: (a -> a) -> a -> a
+doTwice f x = f (f x)
+
+half :: (Integral a) => a -> a
+half x = div x 2
+
+addTimesOneHundered :: (Num a) => a -> a -> a
+addTimesOneHundered x y = x + (y * 100)
+
+quickSort :: (Ord a) => [a] -> [a]
+quickSort [] = []
+quickSort (x:xs) =
+    let leftSort = quickSort (filter (<=x) xs)
+        rightSort = quickSort (filter (>x) xs)
+    in  leftSort ++ [x] ++ rightSort
+
+chain :: (Integral a) => a -> [a]
+chain 1 = [1]
+chain n
+    | even n = n:chain (div n 2)
+    | odd n = n:chain(n*3 + 1)
+
+numLongChains :: Int
+numLongChains = length $ filter isLong $ map chain [1..100]
+    where isLong xs = length xs > 15
+
+testFold :: (Num a) => [a] -> a
+testFold xs = foldl fold 0 xs
+    where fold = (+)
