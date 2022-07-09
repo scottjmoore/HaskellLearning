@@ -79,3 +79,9 @@ numLongChains = length $ filter isLong $ map chain [1..100]
 testFold :: (Num a) => [a] -> a
 testFold xs = foldl fold 0 xs
     where fold = (+)
+
+mathProb :: (Floating a) => a -> a
+mathProb x = (5 ** x) - (3 ** x)
+
+--mathProb2 :: Floating -> Floating
+mathProb2 x = ((16 ** x) + (20 ** x))
